@@ -1,3 +1,9 @@
+# Author: Mohammed Furqan Rahamath
+# Last updated: 21 March 2020
+# 
+# Purpose: Fetch the articles content for corresponding meta-data
+
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

@@ -1,3 +1,8 @@
+# Author: Mohammed Furqan Rahamath
+# Last updated: 21 March 2020
+# 
+# Purpose: Fetch meta-data of 2000 relevant articles for each quarter from New York Times.
+
 import requests
 import math
 import csv
