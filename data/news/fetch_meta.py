@@ -20,8 +20,8 @@ params = {
         "document_type": ["article"]
     }
 }
-start_year = 2015
-end_year = 2019
+start_year = 2019
+end_year = 2020
 api_keys = [
     "k7d8PIJozXNxppfbVMcmqKXh1j2is4BQ", #northeastern
     "srRafQT5F9h2QbSg2K7o5yvHyGGm6VXB", #MS

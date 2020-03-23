@@ -18,9 +18,9 @@ start_year = 1981
 end_year = 2019
 
 # Customise which year, quarter and row to start from and which year to end at
-start_from_year = 2006
-start_from_quarter = 4
-start_from_row = 69
+start_from_year = 2009
+start_from_quarter = 1
+start_from_row = 398
 stop_at_year = 2020
 
 for year in range(end_year - start_year):
