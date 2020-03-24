@@ -18,7 +18,7 @@ end_year = 2020
 data = []
 for k in range(end_year - start_year):
     try:
-        yearly_articles = (pd.read_csv('../../data/news/articles_{}.csv'.format(start_year+k)))['article']
+        yearly_articles = (pd.read_csv('../../data/news/articles/articles_{}.csv'.format(start_year+k)))['article']
         yearly_articles = [re.sub('\s+', ' ', str(sent)) for sent in yearly_articles]
         yearly_articles = [re.sub("\'", "", str(sent)) for sent in yearly_articles]
         for article in yearly_articles:
@@ -27,7 +27,7 @@ for k in range(end_year - start_year):
         continue
 NO_DOCUMENTS = len(data)
 print(NO_DOCUMENTS)
-NUM_TOPICS = 7
+NUM_TOPICS = 8
 STOPWORDS = stopwords.words('english')
 STOPWORDS.extend(['new', 'first', 'inc', 'like', 'one', 'two', 'today', 'inc.', 'day', 'year', 'nan', 'last'])
 
@@ -74,6 +74,8 @@ corpus = corpora.MmCorpus.serialize('./serialised_corpus.mm', corpus)
 # Build the LDA model
 lda_model = models.ldamulticore.LdaMulticore(corpus=corpus, random_state=100, num_topics=NUM_TOPICS, id2word=dictionary, workers=3)
 
+# lda_model = models.LdaModel(corpus=corpus, num_topics=NUM_TOPICS, per_word_topics=True, random_state=100, id2word=dictionary, alpha=0.2, eta=0.2)
+ 
 # # Build the LSI model
 # lsi_model = models.LsiModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary)
 

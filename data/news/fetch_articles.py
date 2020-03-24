@@ -18,9 +18,9 @@ start_year = 1981
 end_year = 2019
 
 # Customise which year, quarter and row to start from and which year to end at
-start_from_year = 2009
+start_from_year = 2010
 start_from_quarter = 1
-start_from_row = 398
+start_from_row = 720
 stop_at_year = 2020
 
 for year in range(end_year - start_year):
@@ -32,7 +32,7 @@ for year in range(end_year - start_year):
     if (start_year+year < start_from_year):
         continue
     
-    out_file_name = 'articles_{}.csv'.format(start_year+year)
+    out_file_name = 'articles/articles_{}.csv'.format(start_year+year)
     columns = ['_id','url','word_count','section','date','type','headline','abstract','article']
     with open(out_file_name, 'a+') as out_file:
         writer = csv.writer(out_file)
