@@ -18,9 +18,9 @@ start_year = 1981
 end_year = 2019
 
 # Customise which year, quarter and row to start from and which year to end at
-start_from_year = 2010
+start_from_year = 2011
 start_from_quarter = 1
-start_from_row = 720
+start_from_row = 298
 stop_at_year = 2020
 
 for year in range(end_year - start_year):
@@ -48,7 +48,7 @@ for year in range(end_year - start_year):
             # Skip Quarters as per the customisations
             if (start_year+year == start_from_year) and (quarter < start_from_quarter-1):
                 continue
-            with open('data/articles_metadata_{}_{}.csv'.format(start_year+year, quarter+1)) as meta_file:
+            with open('meta_data/articles_metadata_{}_{}.csv'.format(start_year+year, quarter+1)) as meta_file:
                 data = csv.DictReader(meta_file)
                 num_articles = 2000
                 print('{} - {}'.format(start_year+year, quarter+1))

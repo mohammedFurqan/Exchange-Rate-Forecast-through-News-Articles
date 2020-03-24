@@ -95,7 +95,7 @@ for k in range(end_year - start_year):
             duplicate_articles = []
             duplicate_articles_url = []
             
-            with open('data/articles_metadata_{}_{}.csv'.format(start_year+k, quarter+1), 'w') as output_file:
+            with open('meta_data/articles_metadata_{}_{}.csv'.format(start_year+k, quarter+1), 'w') as output_file:
                 for i in range(pages):
                     current_url = queryURL + '&page={}'.format(i)
                     response = (requests.get(current_url)).json()
