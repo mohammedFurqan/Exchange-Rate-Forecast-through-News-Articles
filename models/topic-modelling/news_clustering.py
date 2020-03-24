@@ -1,6 +1,9 @@
 import re
 from gensim import models, corpora
 import nltk
+# You only need to do this once when you start running
+# nltk.download('stopwords')
+# nltk.download('punkt')
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer 
@@ -8,7 +11,6 @@ from nltk.stem import WordNetLemmatizer
 import spacy
 import gensim
 import pandas as pd
-from nltk.corpus import brown
 
 start_year = 1981
 end_year = 2020
@@ -31,7 +33,7 @@ STOPWORDS.extend(['new', 'first', 'inc', 'like', 'one', 'two', 'today', 'inc.', 
 
 # ps = PorterStemmer()
 lemm = WordNetLemmatizer()
-nlp = spacy.load('en', disable=['parser', 'ner'])
+nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
 
 def lemmatization(texts, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
     texts_out = []
@@ -63,13 +65,15 @@ data_lemmatized = lemmatization(tokenized_data, allowed_postags=['NOUN', 'ADJ'])
  
 # Build a Dictionary - association word to numeric id
 dictionary = corpora.Dictionary(data_lemmatized)
+dictionary.save('./lemmatized_dictionary.dic')
  
 # Transform the collection of texts to a numerical form
 corpus = [dictionary.doc2bow(text) for text in data_lemmatized]
+corpus = corpora.MmCorpus.serialize('./serialised_corpus.mm', corpus)
  
 # Build the LDA model
-lda_model = models.LdaModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary, alpha=0.2, eta=0.2)
- 
+lda_model = models.ldamulticore.LdaMulticore(corpus=corpus, random_state=100, num_topics=NUM_TOPICS, id2word=dictionary, workers=3)
+
 # # Build the LSI model
 # lsi_model = models.LsiModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary)
 
