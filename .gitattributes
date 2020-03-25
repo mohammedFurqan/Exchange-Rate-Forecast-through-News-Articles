@@ -1,2 +1,5 @@
 *.mm filter=lfs diff=lfs merge=lfs -text
+*articles_2018.csv filter=lfs diff=lfs merge=lfs -text
+*articles_2019.csv filter=lfs diff=lfs merge=lfs -text
 .mm filter=lfs diff=lfs merge=lfs -text
+*articles_2018.csv,*articles_2019.csv filter=lfs diff=lfs merge=lfs -text
