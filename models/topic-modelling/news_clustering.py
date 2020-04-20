@@ -33,7 +33,7 @@ for k in range(end_year - start_year):
 
 NO_DOCUMENTS = len(data)
 print(NO_DOCUMENTS)
-NUM_TOPICS = 6
+NUM_TOPICS = 7
 STOPWORDS = stopwords.words('english')
 STOPWORDS.extend(['new', 'inc', 'like', 'one', 'two', 'inc.', 'nan'])
 
@@ -79,8 +79,8 @@ corpora.MmCorpus.serialize('../saved_model_data/serialised_corpus.mm', corpus)
 dictionary = corpora.Dictionary.load('../saved_model_data/lemmatized_dictionary.dic')
 mm = corpora.MmCorpus('../saved_model_data/serialised_corpus.mm')
 lda_model = models.ldamulticore.LdaMulticore(corpus=mm, random_state=100, num_topics=NUM_TOPICS, id2word=dictionary, workers=2)
-# lda_model.save('../saved_model_data/lda.model')
-lda_model = models.LdaModel.load('../saved_model_data/lda.model')
+lda_model.save('../saved_model_data/lda_{}.model'.format(NUM_TOPICS))
+lda_model = models.LdaModel.load('../saved_model_data/lda_{}.model'.format(NUM_TOPICS))
 
 
 def doc_topics(mapping, num_topics):
@@ -106,7 +106,7 @@ for year in range(end_year - start_year):
 
 documents = documents.reset_index(drop=True)
 combined_data = pd.concat([documents,document_topics], axis=1, sort=False).reset_index(drop=True)
-combined_data.to_csv('documents_to_topics.csv', index = False)
+combined_data.to_csv('documents_to_topics_{}.csv'.format(NUM_TOPICS), index = False)
 
 
 print("LDA Model:")
